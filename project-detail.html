@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Project Details - F&C Construction</title>
+    <style>
+        .detail-page {
+            width: 90%;
+            max-width: 900px;
+            margin: 60px auto 100px;
+            background: white;
+            padding: 50px;
+            border-radius: 22px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.06);
+        }
+
+        .detail-page .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 30px;
+            transition: 0.3s;
+        }
+
+        .detail-page .back-link:hover {
+            color: #0056b3;
+            gap: 12px;
+        }
+
+        .detail-page .project-gallery {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .detail-page .project-image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 14px;
+        }
+
+        .detail-page .project-gallery .project-image {
+            width: calc(50% - 6px);
+            max-height: 300px;
+        }
+
+        @media (max-width: 600px) {
+            .detail-page .project-gallery .project-image {
+                width: 100%;
+            }
+        }
+
+        .detail-page h1 {
+            font-size: 32px;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .detail-page h1::after {
+            display: none;
+        }
+
+        .detail-page .meta {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .detail-page .meta span {
+            background: #f0f4ff;
+            color: #007bff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .detail-page .description {
+            color: #555;
+            line-height: 2;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .detail-page .doc-section {
+            border-top: 1px solid #eee;
+            padding-top: 30px;
+        }
+
+        .detail-page .doc-section h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: #222;
+        }
+
+        .detail-page .doc-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .detail-page .doc-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .detail-page .doc-btn.pdf {
+            background: #dc3545;
+            color: white;
+        }
+
+        .detail-page .doc-btn.pdf:hover {
+            background: #b02a37;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(220,53,69,0.3);
+        }
+
+        .detail-page .doc-btn.docx {
+            background: #007bff;
+            color: white;
+        }
+
+        .detail-page .doc-btn.docx:hover {
+            background: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,123,255,0.3);
+        }
+
+        .detail-page .not-found {
+            text-align: center;
+            padding: 80px 20px;
+            color: #888;
+        }
+
+        .detail-page .not-found h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .detail-page {
+                padding: 25px 20px;
+            }
+            .detail-page h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+            <a href="index.html">F&C Construction</a>
+        </div>
+        <nav class="nave-bar" id="mainNav">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="index.html#About-Us">About</a></li>
+                <li><a href="index.html#contect-us">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-btn">
+            <a href="index.html#contect-us" class="contact-btn">Get Quote</a>
+        </div>
+        <button class="hamburger" onclick="toggleNav()">&#9776;</button>
+    </header>
+
+    <div class="detail-page" id="detailPage">
+        <a href="projects.html" class="back-link">&larr; Back to Projects</a>
+        <div id="detailContent"></div>
+    </div>
+
+    <section class="main-footer">
+        <div class="footer-bg"></div>
+        <div class="footer-content">
+            <div class="footer-col brand-col">
+                <h2 class="footer-logo">F&C Construction</h2>
+                <p class="footer-desc">Building excellence with integrity and innovation. We deliver high-quality residential and commercial projects across Pakistan.</p>
+                <div class="social-icon">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="index.html#About-Us">About Us</a></li>
+                    <li><a href="index.html#contect-us">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Residential Construction</a></li>
+                    <li><a href="#">Commercial Construction</a></li>
+                    <li><a href="#">Renovation</a></li>
+                    <li><a href="#">Architecture Design</a></li>
+                </ul>
+            </div>
+            <div class="footer-col contact-col">
+                <h3>Contact Info</h3>
+                <p><i class="fa-solid fa-location-dot"></i> Karachi, Pakistan</p>
+                <p><i class="fa-solid fa-phone"></i> +92 333 3934123</p>
+                <p><i class="fa-solid fa-envelope"></i> shahidiqbalkhan900@gmail.com</p>
+                <p><i class="fa-regular fa-clock"></i> Mon – Sat: 9AM – 6PM</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p>&copy; 2026 <strong>F&C Construction</strong>. All Rights Reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <span>|</span>
+                    <a href="terms-of-service.html">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<script>
+function toggleNav() { document.getElementById("mainNav").classList.toggle("open"); }
+
+function openDB() {
+    return new Promise(function (resolve, reject) {
+        var req = indexedDB.open("FNCConstruction", 1);
+        req.onupgradeneeded = function (e) {
+            var db = e.target.result;
+            if (!db.objectStoreNames.contains("projects")) db.createObjectStore("projects", { keyPath: "id" });
+            if (!db.objectStoreNames.contains("news")) db.createObjectStore("news", { keyPath: "id" });
+        };
+        req.onsuccess = function (e) { resolve(e.target.result); };
+        req.onerror = function (e) { reject(e.target.error); };
+    });
+}
+
+async function getProjectById(id) {
+    try {
+        var db = await openDB();
+        var tx = db.transaction("projects", "readonly");
+        var store = tx.objectStore("projects");
+        var req = store.get(Number(id));
+        var result = await new Promise(function (resolve, reject) {
+            req.onsuccess = function () { resolve(req.result); };
+            req.onerror = reject;
+        });
+        if (result) return result;
+    } catch (_) {}
+    try {
+        var local = localStorage.getItem("adminProjects");
+        if (local) { var projs = JSON.parse(local); var found = projs.find(function (p) { return p.id == id; }); if (found) return found; }
+    } catch (_) {}
+    try {
+        var res = await fetch("projects.json");
+        var projs = await res.json();
+        return projs.find(function (p) { return p.id == id; }) || null;
+    } catch (e) { return null; }
+}
+
+async function loadProject() {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const container = document.getElementById("detailContent");
+    if (!id) {
+        container.innerHTML = '<div class="not-found"><h2>No project selected</h2><p>Please select a project from the projects page.</p></div>';
+        return;
+    }
+    const p = await getProjectById(id);
+    if (!p) {
+        container.innerHTML = '<div class="not-found"><h2>Project not found</h2><p>The project you are looking for does not exist or has been removed.</p></div>';
+        return;
+    }
+    function makeDownload(name, data, ext) {
+        if (!name && !data) return null;
+        if (data) {
+            const blob = dataURLtoBlob(data);
+            const url = URL.createObjectURL(blob);
+            return { label: "Download " + ext.toUpperCase(), icon: "fa-solid fa-file-" + (ext === "pdf" ? "pdf" : "word"), url: url, cls: ext, download: name || ("document." + ext) };
+        }
+        if (name) return { label: "Download " + ext.toUpperCase(), icon: "fa-solid fa-file-" + (ext === "pdf" ? "pdf" : "word"), url: name, cls: ext };
+        return null;
+    }
+    function dataURLtoBlob(data) {
+        const parts = data.split(",");
+        const mime = parts[0].match(/:(.*?);/)[1];
+        const bytes = atob(parts[1]);
+        const arr = new Uint8Array(bytes.length);
+        for (let i = 0; i < bytes.length; i++) arr[i] = bytes.charCodeAt(i);
+        return new Blob([arr], { type: mime });
+    }
+    const docs = [makeDownload(p.pdf, p.pdfData, "pdf"), makeDownload(p.docx, p.docxData, "docx")].filter(Boolean);
+
+    var user = null;
+    try { user = JSON.parse(localStorage.getItem("loggedInUser")); } catch (e) {}
+
+    const imgs = p.images && p.images.length ? p.images : (p.image ? [p.image] : []);
+    var docHtml = "";
+    if (docs.length) {
+        if (user) {
+            docHtml = '<div class="doc-section"><h3>Project Documents</h3><div class="doc-buttons">' +
+                docs.map(function (d) {
+                    return '<a href="' + d.url + '" ' + (d.download ? 'download="' + d.download + '"' : 'target="_blank"') + ' class="doc-btn ' + d.cls + '"><i class="' + d.icon + '"></i> ' + d.label + '</a>';
+                }).join("") +
+                '</div></div>';
+        } else {
+            docHtml = '<div class="doc-section" style="text-align:center;padding:30px 0;"><h3 style="margin-bottom:12px;">Project Documents</h3><p style="color:#999;margin-bottom:16px;">Login to download project documents.</p><a href="login.html" class="doc-btn" style="display:inline-flex;align-items:center;gap:10px;padding:12px 28px;border-radius:10px;background:linear-gradient(to right,#00bcd4,#007bff);color:white;text-decoration:none;font-weight:600;font-size:14px;"><i class="fa-solid fa-lock"></i> Login to Download</a></div>';
+        }
+    }
+
+    container.innerHTML = '' +
+        (imgs.length ? '<div class="project-gallery">' + imgs.map(function (src) { return '<img src="' + src + '" alt="' + p.title + '" class="project-image">'; }).join("") + '</div>' : '') +
+        '<div class="meta">' +
+            '<span>Project #' + p.id + '</span>' +
+            (p.link ? '<span><a href="' + p.link + '" target="_blank" style="color:#007bff;text-decoration:none;">External Link</a></span>' : '') +
+        '</div>' +
+        '<h1>' + p.title + '</h1>' +
+        '<p class="description">' + p.description + '</p>' +
+        docHtml;
+}
+
+loadProject();
+</script>
+
+</body>
+</html>

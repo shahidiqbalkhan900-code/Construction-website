@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f7fb;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.registeration {
+    background: white;
+    width: 100%;
+    max-width: 440px;
+    padding: 45px 40px;
+    border-radius: 22px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+.registeration h1 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.registeration h1::after {
+    content: "";
+    position: absolute;
+    width: 70px;
+    height: 4px;
+    background: linear-gradient(to right, #00bcd4, #007bff);
+    left: 50%;
+    bottom: -12px;
+    transform: translateX(-50%);
+    border-radius: 20px;
+}
+
+.registeration label {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+.registeration input {
+    width: 100%;
+    padding: 13px 15px;
+    margin-bottom: 18px;
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.3s;
+    background: #fafafa;
+}
+
+.registeration input:focus {
+    border-color: #00bcd4;
+    box-shadow: 0 0 12px rgba(0,188,212,0.15);
+    background: white;
+}
+
+.registeration .btn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(to right, #00bcd4, #007bff);
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 5px;
+}
+
+.registeration .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0,123,255,0.25);
+}
+
+.login-link {
+    margin-top: 22px;
+    font-size: 14px;
+    text-align: center;
+    color: #666;
+}
+
+.login-link a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

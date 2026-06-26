@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="admin.css">
+  <title>Admin Panel - F&C Construction</title>
+</head>
+<body>
+
+  <!-- Top Bar -->
+  <div class="admin-topbar">
+    <div class="logo">
+      <a href="index.html">F&C <span>Admin</span></a>
+    </div>
+    <div class="topbar-links">
+      <a href="index.html"><i class="fa-solid fa-external-link-alt"></i> View Site</a>
+    </div>
+  </div>
+
+  <!-- Body -->
+  <div class="admin-body">
+
+    <!-- Sidebar -->
+    <nav class="admin-sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-label">Content</div>
+        <a class="sidebar-item active" onclick="switchTab('projects')" id="tab-projects">
+          <i class="fa-solid fa-folder-open"></i> Projects
+        </a>
+        <a class="sidebar-item" onclick="switchTab('news')" id="tab-news">
+          <i class="fa-solid fa-newspaper"></i> News
+        </a>
+      </div>
+      <div class="sidebar-section">
+        <div class="sidebar-label">Actions</div>
+        <a class="sidebar-item" onclick="exportJSON()">
+          <i class="fa-solid fa-download"></i> Export Projects
+        </a>
+        <a class="sidebar-item" onclick="document.getElementById('importInput').click()">
+          <i class="fa-solid fa-upload"></i> Import Projects
+        </a>
+        <a class="sidebar-item" onclick="exportNewsJSON()">
+          <i class="fa-solid fa-download"></i> Export News
+        </a>
+      </div>
+      <input type="file" id="importInput" accept=".json" style="display:none" onchange="importJSON(event)">
+    </nav>
+
+    <!-- Main Content -->
+    <div class="admin-content">
+
+      <!-- ==================== PROJECTS PANEL ==================== -->
+      <div class="section-panel active" id="panel-projects">
+        <div class="section-header">
+          <div>
+            <h1>Projects</h1>
+            <p>Manage your construction projects</p>
+          </div>
+        </div>
+
+        <div class="admin-cards">
+          <!-- Form -->
+          <div class="admin-card">
+            <div class="card-header">
+              <h2 id="formTitle"><i class="fa-solid fa-plus-circle" style="color:#007bff;margin-right:8px;"></i>Add New Project</h2>
+            </div>
+            <div class="card-body">
+              <form id="projectForm">
+                <input type="hidden" id="projectId" value="">
+
+                <div class="form-group">
+                  <label>Project Title</label>
+                  <div class="input-icon">
+                    <i class="fa-solid fa-heading"></i>
+                    <input type="text" id="projectTitle" placeholder="e.g. Building under construction">
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Description</label>
+                  <textarea id="projectDesc" rows="4" placeholder="Project description..."></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>Document (auto-fills Title &amp; Description)</label>
+                  <input type="file" id="projectDoc" accept=".txt,.docx,.pdf">
+                  <span class="field-hint">Supports .txt, .docx, .pdf</span>
+                </div>
+
+                <div class="form-group">
+                  <label>Project Images <small style="font-weight:400;color:#999;">(first is cover)</small></label>
+                  <div class="input-group">
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById('imagePicker').click()">
+                      <i class="fa-solid fa-images"></i> Add Images
+                    </button>
+                  </div>
+                  <input type="file" id="imagePicker" accept="image/*" multiple style="display:none" onchange="handleImages(event)">
+                  <input type="hidden" id="projectImagesData" value="">
+                  <div class="image-grid" id="imagePreviewGrid">
+                    <span class="img-empty">No images selected</span>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>PDF Document</label>
+                  <div class="input-group">
+                    <input type="text" id="projectPdf" placeholder="Select PDF file" readonly>
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById('pdfPicker').click()">Browse</button>
+                  </div>
+                  <input type="hidden" id="projectPdfData" value="">
+                  <input type="file" id="pdfPicker" accept=".pdf" style="display:none" onchange="setFileData('projectPdf', 'projectPdfData', event)">
+                </div>
+
+                <div class="form-group">
+                  <label>DOCX Document</label>
+                  <div class="input-group">
+                    <input type="text" id="projectDocx" placeholder="Select DOCX file" readonly>
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById('docxPicker').click()">Browse</button>
+                  </div>
+                  <input type="hidden" id="projectDocxData" value="">
+                  <input type="file" id="docxPicker" accept=".docx" style="display:none" onchange="setFileData('projectDocx', 'projectDocxData', event)">
+                </div>
+
+                <div class="form-group">
+                  <label>External Link <small style="font-weight:400;color:#999;">(optional)</small></label>
+                  <div class="input-icon">
+                    <i class="fa-solid fa-link"></i>
+                    <input type="text" id="projectLink" placeholder="https://example.com/project">
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary" id="saveBtn"><i class="fa-solid fa-floppy-disk"></i> Save Project</button>
+                  <button type="button" class="btn btn-secondary" id="cancelBtn" style="display:none" onclick="cancelEdit()">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- List -->
+          <div class="admin-card">
+            <div class="card-header">
+              <h2><i class="fa-solid fa-list" style="color:#007bff;margin-right:8px;"></i>All Projects</h2>
+              <span class="badge" id="projectCount">0</span>
+            </div>
+            <div class="card-body">
+              <div class="list-items" id="projectsList"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <strong><i class="fa-solid fa-circle-info"></i> How to update your live site:</strong>
+          <ol>
+            <li>Make your changes above.</li>
+            <li>Click <strong>Export Projects</strong> from the sidebar.</li>
+            <li>Upload the downloaded <code>projects.json</code> to your server.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- ==================== NEWS PANEL ==================== -->
+      <div class="section-panel" id="panel-news">
+        <div class="section-header">
+          <div>
+            <h1>News</h1>
+            <p>Manage the scrolling news ticker items</p>
+          </div>
+        </div>
+
+        <div class="admin-cards">
+          <!-- Form -->
+          <div class="admin-card">
+            <div class="card-header">
+              <h2 id="newsFormTitle"><i class="fa-solid fa-plus-circle" style="color:#007bff;margin-right:8px;"></i>Add News</h2>
+            </div>
+            <div class="card-body">
+              <form id="newsForm">
+                <input type="hidden" id="newsId" value="">
+
+                <div class="form-group">
+                  <label>News Heading <small style="font-weight:400;color:#999;">(clickable in ticker)</small></label>
+                  <div class="input-icon">
+                    <i class="fa-solid fa-heading"></i>
+                    <input type="text" id="newsHeading" placeholder="e.g. New project launched" required>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>Full Content</label>
+                  <textarea id="newsText" rows="4" placeholder="Full news content..."></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>Image <small style="font-weight:400;color:#999;">(shown in ticker)</small></label>
+                  <div class="input-group">
+                    <input type="text" id="newsImage" placeholder="Select image" readonly>
+                    <button type="button" class="btn btn-primary" onclick="document.getElementById('newsImagePicker').click()">Browse</button>
+                  </div>
+                  <input type="hidden" id="newsImageData" value="">
+                  <input type="file" id="newsImagePicker" accept="image/*" style="display:none" onchange="setNewsImage(event)">
+                </div>
+
+                <div class="form-group">
+                  <label>Link <small style="font-weight:400;color:#999;">(auto-fetches heading)</small></label>
+                  <div class="input-icon">
+                    <i class="fa-solid fa-link"></i>
+                    <input type="text" id="newsLink" placeholder="https://example.com" onchange="fetchLinkTitle(this.value)">
+                  </div>
+                </div>
+
+                <div class="toggle-group">
+                  <label class="switch">
+                    <input type="checkbox" id="newsActive" checked>
+                    <span class="slider"></span>
+                  </label>
+                  <span style="font-size:14px;font-weight:500;color:#444;">Active</span>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary" id="saveNewsBtn"><i class="fa-solid fa-floppy-disk"></i> Add News</button>
+                  <button type="button" class="btn btn-secondary" id="cancelNewsBtn" style="display:none" onclick="cancelNewsEdit()">Cancel</button>
+                </div>
+              </form>
+
+              <hr style="margin:24px 0;border:none;border-top:1px solid #eee;">
+
+              <div class="form-group">
+                <label>Add from Project</label>
+                <div class="select-group">
+                  <select id="projectSelect">
+                    <option value="">-- Select a project --</option>
+                  </select>
+                  <button type="button" class="btn btn-primary" onclick="addProjectAsNews()"><i class="fa-solid fa-plus"></i> Add</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- List -->
+          <div class="admin-card">
+            <div class="card-header">
+              <h2><i class="fa-solid fa-list" style="color:#007bff;margin-right:8px;"></i>All News</h2>
+              <span class="badge" id="newsCount">0</span>
+            </div>
+            <div class="card-body">
+              <div class="list-items" id="newsList"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="admin.js"></script>
+</body>
+</html>

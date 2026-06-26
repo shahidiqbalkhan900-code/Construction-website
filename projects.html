@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>All Projects - F&C Construction</title>
+</head>
+<body>
+   <header class="header">
+
+  <div class="logo">
+    <a href="index.html">F&C Construction</a>
+  </div>
+
+  <nav class="nave-bar" id="mainNav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projects.html" class="active">Projects</a></li>
+      <li><a href="index.html#About-Us">About</a></li>
+      <li><a href="index.html#contect-us">Contact</a></li>
+      <li id="adminNavItem2" style="display:none"><a href="admin.html">Admin</a></li>
+      <li id="loginNavItem2"><a href="login.html">Login</a></li>
+      <li id="logoutNavItem2" style="display:none"><a href="#" onclick="handleLogout(); return false;">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="header-btn">
+    <a href="index.html#contect-us" class="contact-btn">
+      Get Quote
+    </a>
+  </div>
+
+  <button class="hamburger" onclick="toggleNav()">&#9776;</button>
+
+</header>
+
+<h1>All Projects</h1>
+<div class="container-project" id="projectsContainer" style="margin-top:40px"></div>
+
+<section class="main-footer">
+  <div class="footer-bg"></div>
+  <div class="footer-content">
+
+    <div class="footer-col brand-col">
+      <h2 class="footer-logo">F&C Construction</h2>
+      <p class="footer-desc">Building excellence with integrity and innovation. We deliver high-quality residential and commercial projects across Pakistan.</p>
+      <div class="social-icon">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="index.html#About-Us">About Us</a></li>
+        <li><a href="index.html#contect-us">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Services</h3>
+      <ul>
+        <li><a href="#">Residential Construction</a></li>
+        <li><a href="#">Commercial Construction</a></li>
+        <li><a href="#">Renovation</a></li>
+        <li><a href="#">Architecture Design</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col contact-col">
+      <h3>Contact Info</h3>
+      <p><i class="fa-solid fa-location-dot"></i> Karachi, Pakistan</p>
+      <p><i class="fa-solid fa-phone"></i> +92 333 3934123</p>
+      <p><i class="fa-solid fa-envelope"></i> shahidiqbalkhan900@gmail.com</p>
+      <p><i class="fa-regular fa-clock"></i> Mon – Sat: 9AM – 6PM</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-content">
+      <p>&copy; 2026 <strong>F&C Construction</strong>. All Rights Reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <span>|</span>
+        <a href="terms-of-service.html">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function toggleNav() { document.getElementById("mainNav").classList.toggle("open"); }
+
+function handleLogout() {
+  localStorage.removeItem("loggedInUser");
+  location.reload();
+}
+
+function renderProjects(projects) {
+  const container = document.getElementById("projectsContainer");
+  if (!container) return;
+  var sorted = projects.slice().sort(function (a, b) { return b.id - a.id; });
+  container.innerHTML = sorted.map(function (p) {
+    var id = p.id;
+    var imgSrc = p.images && p.images.length ? p.images[0] : (p.image || "");
+    var descId = "desc-" + id;
+    return '<div class="service">' +
+      '<img src="' + imgSrc + '" alt="' + p.title + '">' +
+      '<h2>' + p.title + '</h2>' +
+      '<h2>Description</h2>' +
+      '<div class="desc-wrap">' +
+        '<div class="desc-text" id="' + descId + '">' + p.description + '</div>' +
+        '<button class="read-more-btn" onclick="toggleDesc(\'' + descId + '\', this)">Read More</button>' +
+      '</div>' +
+      '<div class="btn-row">' +
+        '<button class="view-btn" onclick="window.open(\'project-detail.html?id=' + id + '\', \'_blank\')"><i class="fa-solid fa-arrow-right"></i> View Project</button>' +
+      '</div>' +
+    '</div>';
+  }).join("");
+}
+
+function toggleDesc(id, btn) {
+  var el = document.getElementById(id);
+  if (!el) return;
+  el.classList.toggle("open");
+  btn.textContent = el.classList.contains("open") ? "Read Less" : "Read More";
+}
+
+function openDB() {
+  return new Promise(function (resolve, reject) {
+    var req = indexedDB.open("FNCConstruction", 1);
+    req.onupgradeneeded = function (e) {
+      var db = e.target.result;
+      if (!db.objectStoreNames.contains("projects")) db.createObjectStore("projects", { keyPath: "id" });
+      if (!db.objectStoreNames.contains("news")) db.createObjectStore("news", { keyPath: "id" });
+    };
+    req.onsuccess = function (e) { resolve(e.target.result); };
+    req.onerror = function (e) { reject(e.target.error); };
+  });
+}
+
+function loadProjects() {
+  openDB().then(function (db) {
+    var tx = db.transaction("projects", "readonly");
+    var store = tx.objectStore("projects");
+    var all = store.getAll();
+    all.onsuccess = function () {
+      if (all.result && all.result.length) { renderProjects(all.result); return; }
+      fallback();
+    };
+    all.onerror = function () { fallback(); };
+  }).catch(function () { fallback(); });
+  function fallback() {
+    var local = localStorage.getItem("adminProjects");
+    if (local) { try { renderProjects(JSON.parse(local)); return; } catch (_) {} }
+    fetch("projects.json").then(function (r) { return r.json(); }).then(function (p) {
+      localStorage.setItem("adminProjects", JSON.stringify(p));
+      renderProjects(p);
+    }).catch(function () { renderProjects([]); });
+  }
+}
+
+(function checkAuth() {
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  const adminItem = document.getElementById("adminNavItem2");
+  const loginItem = document.getElementById("loginNavItem2");
+  const logoutItem = document.getElementById("logoutNavItem2");
+  if (user) {
+    loginItem.style.display = "none";
+    logoutItem.style.display = "";
+    if (adminItem) adminItem.style.display = user.email === "admin@admin.com" ? "" : "none";
+  } else {
+    loginItem.style.display = "";
+    logoutItem.style.display = "none";
+    if (adminItem) adminItem.style.display = "none";
+  }
+})();
+
+loadProjects();
+</script>
+
+</body>
+</html>

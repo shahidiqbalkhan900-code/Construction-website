@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+<body>
+   <header class="header">
+
+  <div class="logo">
+    <a href="#">F&C Construction</a>
+  </div>
+
+  <nav class="nave-bar" id="mainNav">
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#our-Projects">Projects</a></li>
+      <li><a href="#About-Us">About</a></li>
+      <li><a href="#contect-us">Contact</a></li>
+      <li id="adminNavItem" style="display:none"><a href="admin.html">Admin</a></li>
+      <li id="loginNavItem"><a href="login.html" id="loginLink">Login</a></li>
+      <li id="logoutNavItem" style="display:none"><a href="#" onclick="handleLogout(); return false;">Logout</a></li>
+    </ul>
+  </nav>
+
+  <div class="header-btn">
+    <a href="#contect-us" class="contact-btn">
+      Get Quote
+    </a>
+  </div>
+
+  <button class="hamburger" onclick="toggleNav()">&#9776;</button>
+
+</header>
+
+   <!--Hero Section start-->
+    <div class="hero-container">
+  <div class="carousel">
+
+    <div class="slide active" style="background-image: url('img/building.jpg');">
+      <div class="content">
+        <h1>Dream Home Projects</h1>
+        <p>Building beautiful homes that combine quality craftsmanship, comfort, and modern living.</p>
+        <a href="#our-Projects" class="pro-btn">View Project</a>
+      </div>
+    </div>
+
+    <div class="slide" style="background-image: url('img/tiling.jpg');">
+      <div class="content">
+        <h1>Premium Tiling Projects</h1>
+        <p>Delivering flawless tile installations with precision, durability, and elegant design.</p>
+        <a href="#our-Projects" class="pro-btn">View Project</a>
+      </div>
+    </div>
+
+    <div class="slide" style="background-image: url('img/school.jpg');">
+      <div class="content">
+        <h1>Modern School Construction</h1>
+        <p>Building safe, inspiring educational facilities that support learning and future growth.</p>
+        <a href="#our-Projects" class="pro-btn">View Project</a>
+      </div>
+    </div>
+
+    <div class="slide" style="background-image: url('img/style.jpg');">
+      <div class="content">
+        <h1>Elegant Home Decoration</h1>
+        <p>Transforming living spaces with stylish designs, quality finishes, and lasting comfort.</p>
+        <a href="#our-Projects" class="pro-btn">View Project</a>
+      </div>
+    </div>
+
+    <div class="slide" style="background-image: url('img/home.jpg');">
+      <div class="content">
+        <h1>Modern Office Buildings</h1>
+        <p>Creating efficient, professional workspaces designed for productivity and long-term value.</p>
+        <a href="#our-Projects" class="pro-btn">View Project</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+    <!--Hero Section end-->
+  <div class="news-ticker">
+  <span class="label">News:</span>
+  <div class="ticker-wrapper">
+    <div class="ticker" id="newsTicker"></div>
+  </div>
+</div>
+
+<!--Services section-->
+<h1 id="our-Projects">our Projects</h1>
+<div class="container-project" id="projectsContainer" data-limit="6"></div>
+<div class="view-all-wrapper">
+  <a href="projects.html" class="view-all-btn">View All Projects</a>
+</div>
+
+
+<h1 id="About-Us">About Us</h1>
+
+<div class="container-about">
+  <div class="left-side">
+    <h2>Who We Are</h2>
+    <p>
+      With years of industry experience, we provide reliable construction and renovation services, delivering high-quality projects through skilled craftsmanship, innovative solutions, and a commitment to client satisfaction.
+    </p>
+    <a href="#" class="btn">Learn More</a>
+  </div>
+
+  <div class="right-side">
+    <img src="img/building1.png" alt="Building">
+  </div>
+
+      
+</div>
+
+<div class="count">
+  <div class="project">
+    <h3 class="counter" data-target="100">0</h3>
+    <p>Projects</p>
+  </div>
+
+  <div class="project">
+    <h3 class="counter" data-target="150">0</h3>
+    <p>Clients</p>
+  </div>
+
+  <div class="project">
+    <h3 class="counter" data-target="15">0</h3>
+    <p>Years</p>
+  </div>
+</div>
+
+</div>
+
+<div class="container-mission">
+
+  <div class="card">
+    <div class="icon">
+      <!-- Mission Icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#f39c12" viewBox="0 0 16 16">
+        <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887z"/>
+      </svg>
+    </div>
+    <h2>Our Mission</h2>
+    <p>To deliver reliable, cost-effective, and high-quality construction services while maintaining the highest standards of safety and integrity.</p>
+  </div>
+
+  <div class="card">
+    <div class="icon">
+      <!-- Vision Icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="#f39c12" viewBox="0 0 16 16">
+        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8z"/>
+      </svg>
+    </div>
+    <h2>Our Vision</h2>
+    <p>To become a leading construction company recognized for innovation, sustainability, and customer satisfaction across Pakistan.</p>
+  </div>
+
+</div>
+
+
+<div class="contect-cont">
+
+    <h1 id="contect-us">Contact Us</h1>
+    <p>Get in touch with us for your next project</p>
+
+    <!-- WRAPPER -->
+    <div class="contact-box">
+
+        <!-- RIGHT SIDE -->
+        
+        <div class="company-info">
+            <h2>Company Information</h2>
+
+            <h3><b>Address:</b> Karachi, Pakistan</h3>
+            <h3><b>Email:</b> info@gmail.com</h3>
+            <h3><b>Phone:</b> +92 300 1234567</h3>
+
+            <hr>
+
+            <h2>Office Hours</h2>
+            <p>
+                Monday - Saturday: 9:00 AM - 6:00 PM <br>
+                Sunday: Closed
+            </p>
+        </div>
+
+        <!-- LEFT SIDE -->
+        <form class="contect-form" id="contactForm">
+
+            <label>Name</label>
+            <input type="text" id="name" placeholder="Enter your name">
+            <small class="error" id="nameError"></small>
+
+            <label>Email</label>
+            <input type="email" id="email" placeholder="Enter your Email">
+            <small class="error" id="emailError"></small>
+
+            <label>Phone</label>
+            <input type="text" id="phone" placeholder="Enter your Phone Number">
+            <small class="error" id="phoneError"></small>
+
+            <label>Message</label>
+            <textarea id="message" placeholder="Enter your message"></textarea>
+            <small class="error" id="messageError"></small>
+
+            <button type="submit">Send Message</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<section class="main-footer">
+  <div class="footer-bg"></div>
+  <div class="footer-content">
+
+    <div class="footer-col brand-col">
+      <h2 class="footer-logo">F&C Construction</h2>
+      <p class="footer-desc">Building excellence with integrity and innovation. We deliver high-quality residential and commercial projects across Pakistan.</p>
+      <div class="social-icon">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#our-Projects">Projects</a></li>
+        <li><a href="#About-Us">About Us</a></li>
+        <li><a href="#contect-us">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h3>Services</h3>
+      <ul>
+        <li><a href="#">Residential Construction</a></li>
+        <li><a href="#">Commercial Construction</a></li>
+        <li><a href="#">Renovation</a></li>
+        <li><a href="#">Architecture Design</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col contact-col">
+      <h3>Contact Info</h3>
+      <p><i class="fa-solid fa-location-dot"></i> Karachi, Pakistan</p>
+      <p><i class="fa-solid fa-phone"></i> +92 333 3934123</p>
+      <p><i class="fa-solid fa-envelope"></i> shahidiqbalkhan900@gmail.com</p>
+      <p><i class="fa-regular fa-clock"></i> Mon – Sat: 9AM – 6PM</p>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <div class="footer-bottom-content">
+      <p>&copy; 2026 <strong>F&C Construction</strong>. All Rights Reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <span>|</span>
+        <a href="terms-of-service.html">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<div class="news-modal-overlay" id="newsModalOverlay" onclick="if(event.target===this)closeNewsModal()">
+  <div class="news-modal">
+    <button class="news-modal-close" onclick="closeNewsModal()">&times;</button>
+    <img id="newsModalImage" src="" alt="" style="display:none;width:100%;border-radius:12px;margin-bottom:20px;max-height:300px;object-fit:cover;">
+    <h2 id="newsModalTitle"></h2>
+    <p id="newsModalText"></p>
+    <div id="newsModalLink" style="margin-top:15px;display:none;"></div>
+  </div>
+</div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

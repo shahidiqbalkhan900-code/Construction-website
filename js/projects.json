@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Building under construction",
+    "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum doloremque, odit iste accusantium laboriosam molestiae provident ipsam natus illo at ea sit dolor molestias fugiat veritatis velit? Amet, ab necessitatibus?",
+    "image": "img/building1.png"
+  },
+  {
+    "id": 2,
+    "title": "Building under construction",
+    "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum doloremque, odit iste accusantium laboriosam molestiae provident ipsam natus illo at ea sit dolor molestias fugiat veritatis velit? Amet, ab necessitatibus?",
+    "image": "img/building1.png"
+  },
+  {
+    "id": 3,
+    "title": "Building under construction",
+    "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum doloremque, odit iste accusantium laboriosam molestiae provident ipsam natus illo at ea sit dolor molestias fugiat veritatis velit? Amet, ab necessitatibus?",
+    "image": "img/building1.png"
+  },
+  {
+    "id": 4,
+    "title": "Building under construction",
+    "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum doloremque, odit iste accusantium laboriosam molestiae provident ipsam natus illo at ea sit dolor molestias fugiat veritatis velit? Amet, ab necessitatibus?",
+    "image": "img/building1.png"
+  },
+  {
+    "id": 5,
+    "title": "Building under construction",
+    "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum doloremque, odit iste accusantium laboriosam molestiae provident ipsam natus illo at ea sit dolor molestias fugiat veritatis velit? Amet, ab necessitatibus?",
+    "image": "img/building1.png"
+  },
+  {
+    "id": 6,
+    "title": "Building under construction",
+    "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum doloremque, odit iste accusantium laboriosam molestiae provident ipsam natus illo at ea sit dolor molestias fugiat veritatis velit? Amet, ab necessitatibus?",
+    "image": "img/building1.png"
+  }
+]
