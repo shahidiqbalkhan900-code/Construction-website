@@ -3,36 +3,36 @@
     "id": 1,
     "title": "Building under construction",
     "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum doloremque, odit iste accusantium laboriosam molestiae provident ipsam natus illo at ea sit dolor molestias fugiat veritatis velit? Amet, ab necessitatibus?",
-    "image": "img/building1.png"
+    "images": ["img/building.jpg"]
   },
   {
     "id": 2,
-    "title": "Building under construction",
+    "title": "School Renovation",
     "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum doloremque, odit iste accusantium laboriosam molestiae provident ipsam natus illo at ea sit dolor molestias fugiat veritatis velit? Amet, ab necessitatibus?",
-    "image": "img/building1.png"
+    "images": ["img/school.jpg"]
   },
   {
     "id": 3,
-    "title": "Building under construction",
+    "title": "University Campus",
     "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum doloremque, odit iste accusantium laboriosam molestiae provident ipsam natus illo at ea sit dolor molestias fugiat veritatis velit? Amet, ab necessitatibus?",
-    "image": "img/building1.png"
+    "images": ["img/university.jpg"]
   },
   {
     "id": 4,
-    "title": "Building under construction",
+    "title": "Home Construction",
     "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum doloremque, odit iste accusantium laboriosam molestiae provident ipsam natus illo at ea sit dolor molestias fugiat veritatis velit? Amet, ab necessitatibus?",
-    "image": "img/building1.png"
+    "images": ["img/home.jpg"]
   },
   {
     "id": 5,
-    "title": "Building under construction",
+    "title": "Tile Flooring",
     "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum doloremque, odit iste accusantium laboriosam molestiae provident ipsam natus illo at ea sit dolor molestias fugiat veritatis velit? Amet, ab necessitatibus?",
-    "image": "img/building1.png"
+    "images": ["img/tile.jpg"]
   },
   {
     "id": 6,
-    "title": "Building under construction",
+    "title": "Modern Tiling",
     "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum doloremque, odit iste accusantium laboriosam molestiae provident ipsam natus illo at ea sit dolor molestias fugiat veritatis velit? Amet, ab necessitatibus?",
-    "image": "img/building1.png"
+    "images": ["img/tiling.jpg"]
   }
 ]
