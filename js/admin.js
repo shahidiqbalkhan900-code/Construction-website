@@ -31,6 +31,7 @@ function switchTab(tab) {
 }
 
 function saveToLocal() {
+  localStorage.setItem("adminProjects", JSON.stringify(projects));
   openDB().then(function (db) {
     var tx = db.transaction("projects", "readwrite");
     var store = tx.objectStore("projects");
@@ -38,7 +39,6 @@ function saveToLocal() {
     projects.forEach(function (p) { store.put(p); });
   }).catch(function (err) {
     console.error("IndexedDB save failed:", err);
-    alert("Storage error. Please try again.");
   });
 }
 
@@ -68,7 +68,7 @@ function fallbackLoadProjects() {
   if (local) {
     try { projects = JSON.parse(local); saveToLocal(); renderProjects(); populateProjectSelect(); return; } catch (_) {}
   }
-  fetch("projects.json").then(function (r) { return r.json(); }).then(function (p) {
+  fetch("js/projects.json").then(function (r) { return r.json(); }).then(function (p) {
     projects = p; saveToLocal(); renderProjects(); populateProjectSelect();
   }).catch(function () {
     projects = []; saveToLocal(); renderProjects(); populateProjectSelect();
@@ -354,6 +354,7 @@ loadNews();
 var news = [];
 
 function saveNewsToLocal() {
+  localStorage.setItem("adminNews", JSON.stringify(news));
   openDB().then(function (db) {
     var tx = db.transaction("news", "readwrite");
     var store = tx.objectStore("news");
@@ -530,11 +531,8 @@ function fetchLinkTitle(url) {
 function populateProjectSelect() {
   const select = document.getElementById("projectSelect");
   if (!select) return;
-  const local = localStorage.getItem("adminProjects");
-  let projs = [];
-  if (local) { try { projs = JSON.parse(local); } catch (_) {} }
   select.innerHTML = '<option value="">-- Select a project --</option>';
-  projs.forEach(p => {
+  projects.forEach(p => {
     const opt = document.createElement("option");
     opt.value = p.id;
     opt.textContent = p.title;
@@ -546,17 +544,14 @@ function addProjectAsNews() {
   const select = document.getElementById("projectSelect");
   const id = select.value;
   if (!id) { alert("Please select a project."); return; }
-  const local = localStorage.getItem("adminProjects");
-  let projs = [];
-  if (local) { try { projs = JSON.parse(local); } catch (_) {} }
-  const project = projs.find(p => p.id == id);
+  const project = projects.find(p => p.id == id);
   if (!project) return;
   const newId = news.length ? Math.max(...news.map(n => n.id)) + 1 : 1;
   news.push({
     id: newId,
     heading: project.title,
     text: project.description,
-    image: project.image || "",
+    image: project.images && project.images.length ? project.images[0] : (project.image || ""),
     active: true
   });
   saveNewsToLocal();
