@@ -3,28 +3,28 @@
     "id": 1,
     "heading": "Today news",
     "text": "Full details about today's news.",
-    "image": "img/building1.png",
+    "image": "img/building.jpg",
     "active": true
   },
   {
     "id": 2,
     "heading": "Tomorrow news",
     "text": "Full details about tomorrow's news.",
-    "image": "img/building1.png",
+    "image": "img/constr.jpg",
     "active": true
   },
   {
     "id": 3,
     "heading": "Yesterday news",
     "text": "Full details about yesterday's news.",
-    "image": "img/building1.png",
+    "image": "img/style.jpg",
     "active": true
   },
   {
     "id": 4,
     "heading": "Upcoming news",
     "text": "Full details about upcoming news.",
-    "image": "img/building1.png",
+    "image": "img/unsw.jpg",
     "active": true
   }
 ]
