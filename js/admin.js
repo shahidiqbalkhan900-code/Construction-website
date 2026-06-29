@@ -158,6 +158,10 @@ function setFileData(nameField, dataField, event) {
     _fileStore[dataField] = e.target.result;
     document.getElementById(dataField).value = e.target.result;
   };
+  reader.onerror = function () {
+    console.error("Failed to read file:", file.name);
+    document.getElementById(dataField).value = "";
+  };
   reader.readAsDataURL(file);
 }
 
@@ -311,15 +315,17 @@ function deleteProject(id) {
   projects = projects.filter(p => p.id !== id);
   saveToLocal();
   renderProjects();
+  populateProjectSelect();
 }
 
 function exportJSON() {
   const blob = new Blob([JSON.stringify(projects, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
+  const url = URL.createObjectURL(blob);
+  a.href = url;
   a.download = "projects.json";
   a.click();
-  URL.revokeObjectURL(a.href);
+  setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
 }
 
 function importJSON(event) {
@@ -564,8 +570,9 @@ function exportNewsJSON() {
   const data = news.map(n => ({ heading: n.heading, text: n.text, image: n.image, active: n.active }));
   const blob = new Blob([JSON.stringify(data, null, 2)], { type: "application/json" });
   const a = document.createElement("a");
-  a.href = URL.createObjectURL(blob);
+  const url = URL.createObjectURL(blob);
+  a.href = url;
   a.download = "news.json";
   a.click();
-  URL.revokeObjectURL(a.href);
+  setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
 }
