@@ -273,7 +273,7 @@ async function getProjectById(id) {
         if (local) { var projs = JSON.parse(local); var found = projs.find(function (p) { return p.id == id; }); if (found) return found; }
     } catch (_) {}
     try {
-        var res = await fetch("projects.json");
+        var res = await fetch("js/projects.json");
         var projs = await res.json();
         return projs.find(function (p) { return p.id == id; }) || null;
     } catch (e) { return null; }
