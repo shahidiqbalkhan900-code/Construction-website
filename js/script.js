@@ -83,7 +83,7 @@ function loadProjects() {
 function fallbackLoad(limit) {
   var local = localStorage.getItem("adminProjects");
   if (local) { try { renderProjects(JSON.parse(local), limit); return; } catch (_) {} }
-  fetch("projects.json").then(function (r) { return r.json(); }).then(function (p) {
+  fetch("js/projects.json").then(function (r) { return r.json(); }).then(function (p) {
     localStorage.setItem("adminProjects", JSON.stringify(p));
     renderProjects(p, limit);
   }).catch(function () { renderProjects([], limit); });
